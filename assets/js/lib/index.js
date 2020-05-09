@@ -1,3 +1,22 @@
+var obj={};
+obj['tasks']=[];
+if(window.localStorage.getItem("tasklist")!==null){
+    obj=JSON.parse(window.localStorage.getItem("tasklist"));
+    console.log(obj);
+    for(var i=0;i<obj['tasks'].length;i++){
+        $("<li><span><i id='delbutton' class='material-icons'>delete</i></span>"+obj['tasks'][i]+"</li>").appendTo("#todolist");
+        if($("#change-theme").text()==="Light Theme"){
+            console.log("1");
+            $("#todolist li").last().addClass("todo-list");
+            //$("#todolist li").last().addClass("toggle-mode-li");
+        }
+        else{
+            console.log($("#todolist li").last());
+            $("#todolist li").last().addClass("toggle-mode-li");
+        }
+    }
+}
+
 $('ul').on("click","li",function(){
     $(this).toggleClass('completed');
 });
@@ -15,15 +34,15 @@ $("input[type='text']").keypress(function(e){
         if($("#change-theme").text()==="Light Theme"){
             console.log("1");
             $("#todolist li").last().addClass("todo-list");
-            //$("#todolist li").last().addClass("toggle-mode-li");
         }
         else{
             console.log($("#todolist li").last());
             $("#todolist li").last().addClass("toggle-mode-li");
         }
-        //$("#todolist").last().toggleClass("todo-list");
-        //$("#todolist").last().toggleClass("toggle-todo-list");
         $(this).val("");
+        obj['tasks'].push(addtodoText);
+        var str=JSON.stringify(obj);
+        window.localStorage.setItem("tasklist",str);
     }
 });
 $("#editbutton").click(function(){
@@ -49,7 +68,6 @@ $("#change-theme").on("click",function(){
     }
     
 });
-
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.fixed-action-btn');
     var instances = M.FloatingActionButton.init(elems, {
@@ -57,4 +75,5 @@ document.addEventListener('DOMContentLoaded', function() {
         hoverEnabled: true
       });
   });
+
 
