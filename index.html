@@ -11,13 +11,16 @@
             
     </head>
     <body>
+        <div>
+            <button id="change-theme">Light Theme</button>
+        </div>
         <div id="container">
             <h1 id="name">Todo List <i id="editbutton" class="material-icons">mode_edit</i> </h1>
-            <input id="addtodoinput" class="browser-default" type="text" placeholder="Add New Todo">
+            <input id="addtodoinput" class="todo-add-text browser-default" type="text" placeholder="Add New Todo">
             <ul id="todolist">
-                <li><span><i class="fa fa-trash"></i></span>Work 1</li>
-                <li><span><i class="fa fa-trash"></i></span>Work 2</li>
-                <li><span><i class="fa fa-trash"></i></span>Work 3</li>
+                <li class="todo-list"><span><i id="delbutton" class="material-icons">delete</i> </i></span>Work 1</li>
+                <li class="todo-list"><span><i id="delbutton" class="material-icons">delete</i> </span>Work 2</li>
+                <li class="todo-list"><span><i id="delbutton" class="material-icons">delete</i> </span>Work 3</li>
             </ul>
         </div>
         <div id="fab" class="fixed-action-btn">
