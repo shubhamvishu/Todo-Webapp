@@ -9,7 +9,7 @@ if(window.localStorage.getItem("tasklist")!==null){
     console.log(obj);
     for(var i=0;i<obj['tasks'].length;i++){
         $("<li><span class='delbutton'><i id='delbutton' class='material-icons'>delete</i></span>"+obj['tasks'][i]+"</li>").appendTo("#todolist");
-        if($("#change-theme").text()==="Light Theme"){
+        if($("#change-theme").text().indexOf("Light")!==-1){
             console.log("1");
             $("#todolist li").last().addClass("todo-list");
             //$("#todolist li").last().addClass("toggle-mode-li");
@@ -42,7 +42,7 @@ $("input[type='text']").keypress(function(e){
         console.log("yo");
         var addtodoText=$("input[type='text']").val();
         $("<li><span class='delbutton'><i id='delbutton' class='material-icons'>delete</i></span>"+addtodoText+"</li>").appendTo("#todolist");
-        if($("#change-theme").text()==="Light Theme"){
+        if($("#change-theme").text().indexOf("Light")!==-1){
             console.log("1");
             $("#todolist li").last().addClass("todo-list");
         }
@@ -63,13 +63,11 @@ $("#editbutton").click(function(){
 $("#change-theme").on("click",function(){
     console.log("yayy");
     $("html").toggleClass("toggle-mode");
-    if($(this).text()==="Light Theme"){
-        $(this).text("Dark Theme");
+    if($(this).text().indexOf("Light")!==-1){
         renderMode("Light");
         window.localStorage.setItem("Mode","Light");
     } 
     else {
-        $(this).text("Light Theme");
         renderMode("Dark");
         window.localStorage.setItem("Mode","Dark");
     }
@@ -78,7 +76,7 @@ $("#change-theme").on("click",function(){
 function renderMode(mode){
     if(mode=="Light"){
         console.log("Light");
-        $("#change-theme").text("Dark Theme");
+        $("#change-theme").html('<i class="material-icons left">wb_sunny</i>Dark Theme');
         $("#todolist li").removeClass("todo-list");
         $("#todolist li").addClass("toggle-mode-li");
         $("#addtodoinput").removeClass("todo-add-text");
@@ -86,7 +84,7 @@ function renderMode(mode){
     }
     else{
         console.log("Dark");
-        $("#change-theme").text("Light Theme");
+        $("#change-theme").html('<i class="material-icons left">wb_sunny</i>Light Theme');
         $("#todolist li").addClass("todo-list");
         $("#todolist li").removeClass("toggle-mode-li");
         $("#addtodoinput").addClass("todo-add-text");
